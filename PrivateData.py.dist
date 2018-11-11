@@ -1,0 +1,17 @@
+'''
+Created on 11 lis 2018
+
+@author: ewelina
+'''
+
+class privateData():
+#     Vulcan log data
+    vulcanLogin = "user@example.com"
+    vulcanPassword = "P@ssw0rd"
+    
+#     Private emails
+    emailsToNotify = ["notify1@email.com", "notify2@email.com"]
+    
+#     Data for tests
+    smtpLogin = "login@example.com"
+    smtpPassword = "P@ssw0rd"
