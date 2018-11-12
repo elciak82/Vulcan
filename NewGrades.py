@@ -11,45 +11,28 @@ from PrivateData import privateData as pv
 from SendMail import sendEmail
 from Tests import TestCase
 
-
 class HasGotNewGrades(TestCase):
     url = "https://uonetplus.vulcan.net.pl/rybnik"
     mainLogButtonCss = '//*[@id="MainPage_InfoPage"]/div/div[1]/div[2]/div/a[1]'
-    loginFieldCss = "LoginName"
-    passwordFieldCss = "Password"
-    logButtonCss = '//*[@id="MainDiv"]/form/div[2]/div[4]/input'
     gradesCss = '[class="panel oceny klient szary isotope-item"] [class="subDiv pCont"]'
-    cookieCss = 'cookiePanel-exit'            
+                
     subject = "Check new grades!"
     message = "There are new grades! Check an attached file: "
     
     def test_hasGotNewGrades(self):
         self.driver.get(self.url)
-        
-        cookies = self.driver.find_element_by_id(self.cookieCss)
-#         if cookies.:
-        cookies.click()
-            
+                
         try:
             mainLogButton = self.driver.find_element_by_xpath(self.mainLogButtonCss)
         except Exception:
             self.fail("Main log button not found.")
         mainLogButton.click()
         
-        try:
-            logButton = self.driver.find_element_by_xpath(self.logButtonCss)
-        except Exception:
-            self.fail("Log button not found.")
-    
-        loginField = self.driver.find_element_by_id(self.loginFieldCss)
-        loginField.send_keys(pv.vulcanLogin)
-        passwordField = self.driver.find_element_by_id(self.passwordFieldCss)
-        passwordField.send_keys(pv.vulcanPassword)
-        logButton.click()
+        HasGotNewGrades.logInToVulcan(self)
 
         wait = WebDriverWait(self.driver, 10)
         try:
-            wait.until(EC.presence_of_element_located((By.XPATH, '//*[@id="content"]/div[6]')))
+            wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, self.gradesCss)))
         except Exception:
             self.fail("Grades panel not found.")
 
@@ -72,4 +55,21 @@ class HasGotNewGrades(TestCase):
         else:
             file.close()
             print("There is no changes. Email wasn't send.")
+            
+            
              
+    def logInToVulcan(self):
+        loginFieldCss = "LoginName"
+        passwordFieldCss = "Password"
+        logButtonCss = '//*[@id="MainDiv"]/form/div[2]/div[4]/input'
+         
+        try:
+            logButton = self.driver.find_element_by_xpath(logButtonCss)
+        except Exception:
+            self.fail("Log button not found.")
+    
+        loginField = self.driver.find_element_by_id(loginFieldCss)
+        loginField.send_keys(pv.vulcanLogin)
+        passwordField = self.driver.find_element_by_id(passwordFieldCss)
+        passwordField.send_keys(pv.vulcanPassword)
+        logButton.click()
