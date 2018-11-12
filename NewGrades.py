@@ -10,6 +10,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 from PrivateData import privateData as pv
 from SendMail import sendEmail
 from Tests import TestCase
+from ListDiff import listDiff
 
 class HasGotNewGrades(TestCase):
     url = "https://uonetplus.vulcan.net.pl/rybnik"
@@ -17,7 +18,7 @@ class HasGotNewGrades(TestCase):
     gradesCss = '[class="panel oceny klient szary isotope-item"] [class="subDiv pCont"]'
                 
     subject = "Check new grades!"
-    message = "There are new grades! Check an attached file: "
+    message = "There are new grades: "
     
     def test_hasGotNewGrades(self):
         self.driver.get(self.url)
@@ -32,30 +33,35 @@ class HasGotNewGrades(TestCase):
 
         wait = WebDriverWait(self.driver, 10)
         try:
-            wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, self.gradesCss)))
+            wait.until(EC.presence_of_element_located((By.XPATH, '//*[@id="content"]/div[6]')))
         except Exception:
             self.fail("Grades panel not found.")
 
         grades = self.driver.find_element_by_css_selector(self.gradesCss)
         newGrades = grades.text
+        listOfNewGrades = newGrades.splitlines()
         print("\nNew grades: \n" + newGrades)
         
         fileName = "grades.txt"
         file = open(fileName, 'a+')
         file.seek(0)
         fileText = file.read() 
+        listOfGradesInFile = fileText.splitlines()
         print("\nGrades in a file: \n" + fileText)
-        
+
+        changes = listDiff(listOfNewGrades, listOfGradesInFile)
+        partOfMessage = str(changes)
+        print (partOfMessage)
+         
         if (fileText == 0 or (fileText != newGrades)):
             file.truncate(0)
             file.writelines(grades.text)
             file.close()
             print("Send an email.")
-            sendEmail(pv.smtpLogin, pv.emailsToNotify, self.subject, self.message, fileName)
+            sendEmail(pv.smtpLogin, pv.emailsToNotify, self.subject, self.message + partOfMessage, fileName)
         else:
             file.close()
             print("There is no changes. Email wasn't send.")
-            
             
              
     def logInToVulcan(self):

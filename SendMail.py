@@ -18,7 +18,7 @@ def sendEmail(emailFrom, recipients, subject, message, fileName):
     msg["To"] = ",".join(recipients)
     msg["Subject"] = subject
         
-    msgText = message + fileName
+    msgText = message
     msg.attach(MIMEText(msgText, "plain"))
             
     attachment = open(fileName, "rb")
