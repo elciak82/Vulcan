@@ -11,10 +11,10 @@ from email import encoders
 from PrivateData import privateData as pv
 
 
-def sendEmail(emailFrom, recipients, subject, message, fileName):
+def sendEmail(recipients, subject, message, fileName):
             
     msg = MIMEMultipart()
-    msg["From"] = emailFrom
+    msg["From"] = pv.smtpLogin
     msg["To"] = ",".join(recipients)
     msg["Subject"] = subject
         
@@ -34,5 +34,5 @@ def sendEmail(emailFrom, recipients, subject, message, fileName):
     server.starttls()
     server.login(pv.smtpLogin, pv.smtpPassword)
         
-    server.sendmail(emailFrom, recipients, text)
+    server.sendmail(pv.smtpLogin, recipients, text)
     server.quit()

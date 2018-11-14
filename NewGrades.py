@@ -58,7 +58,7 @@ class HasGotNewGrades(TestCase):
             file.writelines(grades.text)
             file.close()
             print("Send an email.")
-            sendEmail(pv.smtpLogin, pv.emailsToNotify, self.subject, self.message + partOfMessage, fileName)
+            sendEmail(pv.emailsToNotify, self.subject, self.message + partOfMessage, fileName)
         else:
             file.close()
             print("There is no changes. Email wasn't send.")
