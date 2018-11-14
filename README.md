@@ -1,5 +1,5 @@
 # Vulcan
-## Prerequisites
+## Prerequisites:
 1. Python 3.x
 2. Selenium
 3. Chromedriver
