@@ -14,8 +14,8 @@ from ListDiff import listDiff
 
 class HasGotNewGrades(TestCase):
     url = "https://uonetplus.vulcan.net.pl/rybnik"
-    mainLogButtonCss = '//*[@id="MainPage_InfoPage"]/div/div[1]/div[2]/div/a[1]'
-    gradesCss = '[class="panel oceny klient szary isotope-item"] [class="subDiv pCont"]'
+    mainLogButtonCss = "//*[@id='MainPage_InfoPage']/div/div[1]/div[2]/div/a[1]"
+    gradesCss = "[class='panel oceny klient szary isotope-item'] [class='subDiv pCont']"
                 
     subject = "Check new grades!"
     message = "There are new grades: "
@@ -33,7 +33,7 @@ class HasGotNewGrades(TestCase):
 
         wait = WebDriverWait(self.driver, 10)
         try:
-            wait.until(EC.presence_of_element_located((By.XPATH, '//*[@id="content"]/div[6]')))
+            wait.until(EC.presence_of_element_located((By.XPATH, "//*[@id='content']/div[6]")))
         except Exception:
             self.fail("Grades panel not found.")
 
@@ -67,10 +67,10 @@ class HasGotNewGrades(TestCase):
     def logInToVulcan(self):
         loginFieldCss = "LoginName"
         passwordFieldCss = "Password"
-        logButtonCss = '//*[@id="MainDiv"]/form/div[2]/div[4]/input'
+        logButtonXpath = "//*[@id='MainDiv']/form/div[2]/div[4]/input"
          
         try:
-            logButton = self.driver.find_element_by_xpath(logButtonCss)
+            logButton = self.driver.find_element_by_xpath(logButtonXpath)
         except Exception:
             self.fail("Log button not found.")
     

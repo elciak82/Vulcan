@@ -12,6 +12,6 @@ class privateData():
 #     Private emails
     emailsToNotify = ["notify1@email.com", "notify2@email.com"]
     
-#     Data for tests
+#     Data for smtp mail
     smtpLogin = "login@example.com"
     smtpPassword = "P@ssw0rd"
