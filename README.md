@@ -10,4 +10,4 @@
 
 ## Travis CI
  .. image:: https://travis-ci.com/elciak82/Vulcan.svg?branch=master
-   :target: https://travis-ci.com/elciak82/Vulcan
+    :target: https://travis-ci.com/elciak82/Vulcan
