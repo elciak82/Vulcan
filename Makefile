@@ -6,11 +6,11 @@ deps:
 		pip install -r test_requirements.txt
 
 env:		
-		'$VULCAN_PASSWORD' = password
-		'$VULCAN_LOGIN' = loginName
-		'$SMTP_LOGIN' = smtpLogin
-		'$SMTP_PASSWORD' = smtpPassword
-		'$EMAILS_TO_NOTIFY_TEST' = emailsToNotify
+		VULCAN_PASSWORD
+		VULCAN_LOGIN
+		SMTP_LOGIN
+		SMTP_PASSWORD
+		MAILS_TO_NOTIFY_TEST
 
 lint:
 		flake8 test
