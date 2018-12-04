@@ -8,13 +8,13 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.base import MIMEBase
 from email import encoders
-from PrivateData import privateData as pv
+# from PrivateData import privateData as pv
 
 
 def sendEmail(recipients, subject, message, fileName):
             
     msg = MIMEMultipart()
-    msg["From"] = pv.smtpLogin
+    msg["From"] = smtpLogin
     msg["To"] = ",".join(recipients)
     msg["Subject"] = subject
         
@@ -32,7 +32,7 @@ def sendEmail(recipients, subject, message, fileName):
     server = smtplib.SMTP("smtp.gmail.com:587")
     server.ehlo()
     server.starttls()
-    server.login(pv.smtpLogin, pv.smtpPassword)
+    server.login(smtpLogin, smtpPassword)
         
-    server.sendmail(pv.smtpLogin, recipients, text)
+    server.sendmail(smtpLogin, recipients, text)
     server.quit()
