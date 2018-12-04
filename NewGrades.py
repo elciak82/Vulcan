@@ -7,7 +7,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
-from PrivateData import privateData as pv
+# from PrivateData import privateData as pv
 from SendMail import sendEmail
 from Tests import TestCase
 from ListDiff import listDiff
@@ -65,8 +65,8 @@ class HasGotNewGrades(TestCase):
             
              
     def logInToVulcan(self):
-        loginFieldCss = "LoginName"
-        passwordFieldCss = "Password"
+        loginFieldCss = loginName
+        passwordFieldCss = password
         logButtonXpath = "//*[@id='MainDiv']/form/div[2]/div[4]/input"
          
         try:
@@ -75,7 +75,7 @@ class HasGotNewGrades(TestCase):
             self.fail("Log button not found.")
     
         loginField = self.driver.find_element_by_id(loginFieldCss)
-        loginField.send_keys(pv.vulcanLogin)
+        loginField.send_keys(vulcanLogin)
         passwordField = self.driver.find_element_by_id(passwordFieldCss)
-        passwordField.send_keys(pv.vulcanPassword)
+        passwordField.send_keys(vulcanPassword)
         logButton.click()
