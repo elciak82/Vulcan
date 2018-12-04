@@ -3,8 +3,7 @@
     - "3.6"
  # command to install dependencies
  install:
-   - pip install -r requirements.txt
-   - python -m pip install -U selenium
+   - make deps
  #  before_script: 
  # command to run tests
  script:
