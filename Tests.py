@@ -10,7 +10,8 @@ from selenium import webdriver
 
 class TestCase(unittest.TestCase):
     def setUp(self):
-        self.driver = webdriver.Chrome()
+        self.driver = webdriver.Chrome(); 
+#         add a bug
         self.driver.maximize_window()
 
     def tearDown(self):
