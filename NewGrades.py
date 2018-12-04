@@ -65,8 +65,8 @@ class HasGotNewGrades(TestCase):
             
              
     def logInToVulcan(self):
-        loginFieldCss = loginName
-        passwordFieldCss = password
+        loginFieldCss = "LoginName"
+        passwordFieldCss = "Password"
         logButtonXpath = "//*[@id='MainDiv']/form/div[2]/div[4]/input"
          
         try:
