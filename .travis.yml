@@ -8,5 +8,6 @@
  #  before_script: 
  # command to run tests
  script:
-   - coverage run Main.py
+   - make test
+   - make lint
   
