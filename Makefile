@@ -9,7 +9,7 @@ lint:
 		flake8 test
 
 test:
-		PYTHONPATH=. py.test Main.py
+		Main.py
 
 run:
 		python Main.py
