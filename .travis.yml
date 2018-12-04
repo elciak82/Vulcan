@@ -6,8 +6,9 @@
    - pip install -r requirements.txt
    - python -m pip install -U selenium
  before_script: 
-   - import NewGrades.py
+   - python NewGrades.py
+   - python PrivateData.py.dist
  # command to run tests
  script:
-   - make Main.py
+   - python Main.py
   
