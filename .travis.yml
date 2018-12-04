@@ -5,10 +5,8 @@
  install:
    - pip install -r requirements.txt
    - python -m pip install -U selenium
- before_script: 
-   - python NewGrades.py
-   - python PrivateData.py.dist
+ #  before_script: 
  # command to run tests
  script:
-   - python Main.py
+   - coverage run Main.py
   
