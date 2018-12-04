@@ -9,7 +9,7 @@ lint:
 		flake8 test
 
 test:
-		Main.py
+		python Main.py
 
 run:
 		python Main.py
